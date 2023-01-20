@@ -1,0 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="java.sql.*, java.util.*, com.util.DBConnectionMgr" %>
+<%@ page import="com.google.gson.Gson" %>
+   
+    
+<%
+	// 스크립트릿
+	/* out.print("jsonMemberList페이지"); */
+%>

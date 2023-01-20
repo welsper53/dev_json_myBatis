@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MemberMapper">
+	<select id="getMemberList" parameterType="java.util.HahsMapp" resultType="map">
+		select mem_no, mem_id, mem_name from member
+	</select>
+</mapper>
