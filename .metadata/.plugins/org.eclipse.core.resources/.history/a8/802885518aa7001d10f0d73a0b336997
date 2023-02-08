@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="./picture.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script>
+        const startMethod = (td) => {
+            // 마우스 오버된 사진의 id값 가져오기
+            const pic = $(td).attr("id");
+            console.log(pic);
+
+            $.ajax ({
+                method: "GET"
+                , url: "pictureDetail.html?id=" + pic + "&timestamp=" + new Date().getTime()
+                , data: "id=" + pic
+                , dataType: "html"
+                , success: function(result) {
+                    $("#d_pic").css("left", $(td).offset().left + 50 + "px");
+                    $("#d_pic").css("top", $(td).offset().top + "px");
+                    $("#d_pic").html(result)
+                }
+            })
+        }
+        const clearMethod = () => {
+            console.log("clearMethod");
+            $("#d_pic").html("");
+        }
+    </script>
+</head>
+<body>
+    <div id="d_pic"></div>
+    
+    <table border="1">
+        <thead>
+            <th colspan="2">그림 목록</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td align="center"><img src="../../images/회의.jpg" width="50" height="50"/></td>
+                <td 
+                    id="picture1.jpg" 
+                    onmouseover="startMethod(this)" 
+                    onmouseout="clearMethod()"
+                >
+                    사진1
+                </td>
+            </tr>
+            <tr>
+                <td align="center"><img src="../../images/회의-1.jpg" width="50" height="50"/></td>
+                <td 
+                    id="picture2.jpg" 
+                    onmouseover="startMethod(this)" 
+                    onmouseout="clearMethod()"
+                >
+                    사진2
+                </td>
+            </tr>
+            <tr>
+                <td align="center"><img src="../../images/회의-2.jpg" width="50" height="50"/></td>
+                <td 
+                    id="picture3.jpg" 
+                    onmouseover="startMethod(this)" 
+                    onmouseout="clearMethod()"
+                >
+                    사진3
+                </td>
+            </tr>
+            <tr>
+                <td align="center"><img src="../../images/회의-3.jpg" width="50" height="50"/></td>
+                <td 
+                    id="picture4.jpg" 
+                    onmouseover="startMethod(this)" 
+                    onmouseout="clearMethod()"
+                >
+                    사진4
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

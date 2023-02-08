@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원가입</title>
+</head>
+<body>
+	<form method="get" action="joinAction.jsp">
+		<input type="text" id="mem_id" name="mem_id" placeholder="아이디" required>
+	</form>
+</body>
+</html>
