@@ -1,0 +1,28 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // window.location.search: 브라우저의 url 정보
+        const queryString = new URLSearchParams(window.location.search);
+        const id = queryString.get("id");
+        console.log(id);
+
+        let img = null;
+        const pics = ["회의.jpg", "회의-1.jpg", "회의-2.jpg", "회의-3.jpg"];
+
+        for (let i = 0; i < pics.length; i++) {
+            console.log(id + ", " + i);
+            if (id == i) {
+                img = pics[i];
+                console.log(img);
+                $("#imgDetail").attr("src", "../../images/" + img);
+            } // end of if
+        } // end of for
+    });
+</script>
+
+<img 
+    id="imgDetail" 
+    width="400px" 
+    height="400px" 
+    alt="그림" 
+/>
