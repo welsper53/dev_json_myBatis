@@ -1,2 +1,0 @@
-0:0:0:0:0:0:0:1 - - [01/Feb/2023:11:34:19 +0900] "GET /chat221228/member/join.html HTTP/1.1" 304 -
-0:0:0:0:0:0:0:1 - - [01/Feb/2023:11:34:23 +0900] "GET /chat221228/member/joinAction.jsp?mem_id=&mem_pw=&mem_name=&mem_birth=&mem_img=&mem_zipcode=&mem_address= HTTP/1.1" 200 67
