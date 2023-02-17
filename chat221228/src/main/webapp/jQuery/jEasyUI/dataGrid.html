@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Basic DataGrid - jQuery EasyUI Demo</title>
+    <link rel="stylesheet" type="text/css" href="../themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="../themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="../demo/demo.css">
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+    <script>
+        getDeptList = () => {
+            console.log("getDeptList 호출");
+
+            $('#dg_dept').datagrid({
+                // ~~.jsp, ~~.do, ~~.spring
+                url:'./dept.json',
+                method: "GET"
+            });
+        }
+    </script>
+</head>
+<body>
+    <script type="text/javascript">
+        // (jQuery)ready함수(코드실행 시 동작)의 파라미터로 함수를 전달할 수 있다.
+        $(document).ready(function() {
+            console.log("DOM Tree 그려졌을 때.");
+        })
+    </script>
+    <h2>부서관리 시스템</h2>
+    <div style="margin:20px 0;"></div>
+    
+    <table 
+        id="dg_dept"
+        class="easyui-datagrid" 
+        title="Basic DataGrid" 
+        style="width:700px;height:250px"
+        toolbar="#toolbar"
+        data-options="singleSelect:true,collapsible:true,url:'./dept.json'"
+    >
+        <thead>
+            <tr>
+                <th data-options="field:'deptno', width:100">부서번호</th>
+                <th data-options="field:'dname', width:150">부서명</th>
+                <th data-options="field:'loc', width:150, align:'center'">지역</th>
+            </tr>
+        </thead>
+    </table>
+    <div id="toolbar">
+        <a 
+            href="javascript:void(0)" 
+            class="easyui-linkbutton" 
+            iconCls="icon-search" 
+            plain="true" 
+            onclick="getDeptList()"
+        >
+            조회
+        </a>
+        <a 
+            href="javascript:void(0)" 
+            class="easyui-linkbutton" 
+            iconCls="icon-edit" 
+            plain="true" 
+            onclick="editUser()"
+        >
+            Edit User
+        </a>
+        <a 
+            href="javascript:void(0)" 
+            class="easyui-linkbutton" 
+            iconCls="icon-remove" 
+            plain="true" 
+            onclick="destroyUser()"
+        >
+            Remove User
+        </a>
+    </div>
+</body>
+</html>
