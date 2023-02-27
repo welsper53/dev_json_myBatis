@@ -5,52 +5,18 @@
         <param-value>/WEB-INF/classes/log4.properties</param-value>
     </context-param>
     
-    <!-- ============================================================ -->
-    <servlet>
-    	<servlet-name>HelloServlet</servlet-name>
-		<servlet-class>com.day1.HelloServlet</servlet-class>    
-    </servlet>
-    <servlet-mapping>
-    	<servlet-name>HelloServlet</servlet-name>
-    	<url-pattern>/day1/hello.kh</url-pattern>
-    </servlet-mapping>
-    
-    <!-- ============================================================ -->
-    <servlet>
-    	<servlet-name>DeptServlet</servlet-name>
-		<servlet-class>com.day1.DeptManager</servlet-class>    
-    </servlet>
-    <servlet-mapping>
-    	<servlet-name>DeptServlet</servlet-name>
-    	<url-pattern>/jEasyUI/dept/insertAction.do</url-pattern>
-    </servlet-mapping>
-    
-    <!-- ============================================================ -->
-    <servlet>
-    	<servlet-name>TestServlet</servlet-name>
-		<servlet-class>com.mvc.controller.TestServlet</servlet-class>    
-    </servlet>
-    <servlet-mapping>
-    	<servlet-name>TestServlet</servlet-name>
-    	<url-pattern>/test/test.do</url-pattern>
-    </servlet-mapping>
-    
-    <!-- ============================================================ -->
-    <servlet>
-    	<servlet-name>FrontController1</servlet-name>
-		<servlet-class>com.pojo.step1.FrontMVC1</servlet-class>    
-    </servlet>
-    <servlet-mapping>
-    	<servlet-name>FrontController1</servlet-name>
-    	<!-- *.st1하면 어떤 요청이름이 오든 확장자가 st1으로 끝나면 FrontMVC1서블릿이 인터셉트한다 
-    		 web.xml을 수정하면 무조건 서버를 재기동해야 수정된 내용이 반영된다
-    	-->
-    	<url-pattern>*.st1</url-pattern>
-    </servlet-mapping>
-    <!-- ============================================================ -->
-    <session-config>
-	  	<session-timeout>10</session-timeout>
-	</session-config>
+<!-- ============================================================ -->
+   <servlet>
+   	<servlet-name>FrontController1</servlet-name>
+	<servlet-class>com.pojo.step1.FrontMVC11</servlet-class>    
+   </servlet>
+   <servlet-mapping>
+   	<servlet-name>FrontController1</servlet-name>
+   	<!-- *.st1하면 어떤 요청이름이 오든 확장자가 st1으로 끝나면 FrontMVC1서블릿이 인터셉트한다 
+   		 web.xml을 수정하면 무조건 서버를 재기동해야 수정된 내용이 반영된다 -->
+   	<url-pattern>*.st1</url-pattern>
+   </servlet-mapping>
+<!-- ============================================================ -->
 </web-app>
 
 <!--

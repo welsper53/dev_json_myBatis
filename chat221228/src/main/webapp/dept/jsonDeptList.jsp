@@ -5,4 +5,4 @@
 <%
 	String temp = (String)request.getAttribute("jsonDoc");
 	out.print(temp);
-%>
+%>-
