@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mybatis.mapper.BorderMapper">
-	<select id="getBoardList" parameterType="java.util.HashMap" resultType="map">
+	<select id="boardList" parameterType="java.util.HashMap" resultType="map">
 		SELECT
 			bm.bm_no, bm.bm_title, bm.bm_writer, bs.bs_file, bm.bm_hit
 			, bm.bm_group, bm.bm_pos, bm.bm_step
@@ -19,7 +19,7 @@
 		<if test='cb_search!=null and cb_search.equals("bm_writer")'>
 		 	AND bm_writer LIKE '%'||#{keyword}||'%'
 		</if>
-		ORDER by bm.bm_group DESC, bm.bm_step ASC;
+		ORDER by bm.bm_group DESC, bm.bm_step ASC
 	</select>	  	
 	<select id="boardMInsert" parameterType="map">
 		INSERT INTO board_master_t(bm_no, bm_title, bm_writer
@@ -36,12 +36,6 @@
 		    SET bm_step = bm_step + 1
 		WHERE bm_group = #{bm_group}
 		    AND bm_step > #{bm_group}
-	</select>	  	
-	<select id="bmStepUpdate" parameterType="map">
-		UPDATE board_master_t
-		    SET bm_title = :u_title
-		        , bm_content = :u_content
-		WHERE bm_no = :u_no
-	</select>	  	
+	</select>	   	
 </mapper>
 

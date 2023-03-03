@@ -48,6 +48,34 @@
     	<url-pattern>*.st1</url-pattern>
     </servlet-mapping>
     <!-- ============================================================ -->
+    
+    <!-- ============================================================ -->
+    <servlet>
+    	<servlet-name>FrontController2</servlet-name>
+		<servlet-class>com.pojo.step2.ActionServlet</servlet-class>    
+    </servlet>
+    <servlet-mapping>
+    	<servlet-name>FrontController2</servlet-name>
+    	<!-- *.st1하면 어떤 요청이름이 오든 확장자가 st1으로 끝나면 FrontMVC1서블릿이 인터셉트한다 
+    		 web.xml을 수정하면 무조건 서버를 재기동해야 수정된 내용이 반영된다
+    	-->
+    	<url-pattern>*.st2</url-pattern>
+    </servlet-mapping>
+    <!-- ============================================================ -->
+    
+    <!-- ============================================================ -->
+    <servlet>
+    	<servlet-name>FrontController3</servlet-name>
+		<servlet-class>com.pojo.step3.ActionSupport</servlet-class>    
+    </servlet>
+    <servlet-mapping>
+    	<servlet-name>FrontController3</servlet-name>
+    	<!-- *.st1하면 어떤 요청이름이 오든 확장자가 st1으로 끝나면 FrontMVC1서블릿이 인터셉트한다 
+    		 web.xml을 수정하면 무조건 서버를 재기동해야 수정된 내용이 반영된다
+    	-->
+    	<url-pattern>*.st3</url-pattern>
+    </servlet-mapping>
+    <!-- ============================================================ -->
     <session-config>
 	  	<session-timeout>10</session-timeout>
 	</session-config>
