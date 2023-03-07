@@ -20,28 +20,28 @@ public class ActionSupport extends HttpServlet {
 		logger.info("doService호출");
 		
 		String uri = req.getRequestURI();
-		logger.info(uri);		// "board2/getBoardList.st2"
+		logger.info(uri);		// "board/getBoardList.st3"
 		
 		String context = req.getContextPath();		// "/" -> server.xml(<ContextPath>)
 		logger.info(context);	// " "
 		
-		// http://localhost:9000/board2/getBoardList.st2
-		// http://localhost:9000/업무명폴더명/getBoardList.st2
+		// http://localhost:9000/board2/getBoardList.st3
+		// http://localhost:9000/업무명폴더명/getBoardList.st3
 		// 톰캣서버에 요청할 때 사용되는 주소값을 가지고 업무명과 업무에 필요한 이름으로
 		// 분리시켜 사용자 요청에 따라 처리를 담당할 ~~~Controller객체를 주입하는데 사용한다
 		String command = uri.substring(context.length() + 1);
-		System.out.println(command);	// board2/getBoardList.st2
+		logger.info(command);	// board/getBoardList.st3
 		
-		int end = command.lastIndexOf(".");		// st2 잘라내기 위해 사용
-		System.out.println(end);		// 16
+		int end = command.lastIndexOf(".");		// st3 잘라내기 위해 사용
+		logger.info(end);		// 16
 		
 		command = command.substring(0, end);
-		System.out.println(command);	// board2/getBoardList
+		logger.info(command);	// board/getBoardList
 		
 		String upmu[] = null;		// upmu[0] = 업무명|폴더명, upmu[1] = 요청기능이름
 		upmu = command.split("/");
 		
-		logger.info(upmu[0] + ", " + upmu[1]);	// board2, getBoardList
+		logger.info(upmu[0] + ", " + upmu[1]);	// board, getBoardList
 		
 		/* upmu[0] = 업무명|폴더명, upmu[1] = 요청기능이름 
 		 * BoardController에서 req와 res를 받을 수 있는건 execute(req, res) 메소드 뿐이다
@@ -73,29 +73,17 @@ public class ActionSupport extends HttpServlet {
 				}
 				logger.info(pageMove[0] + ", " + pageMove[1]);
 			} else if (obj instanceof ModelAndView) {
+				logger.info("");
 				mav = (ModelAndView)obj;
 				pageMove = new String[2];
-				pageMove[0] = "forward";
+				pageMove[0] = "";	// forward -> ViewResolver else if()타게됨 -> webapp
 				pageMove[1] = mav.getViewName();
 			}
 			
 			if (pageMove != null) {
 				// pageMove[0] = redirect or forward
 				// pageMove[1] = XXX.jsp
-				String path = pageMove[1];
-				
-				if ("redirect".equals(pageMove[0])) {
-					res.sendRedirect(path);
-				} else if ("forward".equals(pageMove[0])) {
-					RequestDispatcher view = req.getRequestDispatcher("/" + path + ".jsp");
-					logger.info(view);
-					view.forward(req, res);
-				} else {
-					path = pageMove[0] + "/" + pageMove[1];
-					
-					RequestDispatcher view = req.getRequestDispatcher("/WEB-INF/view/" + path + ".jsp");
-					view.forward(req, res);
-				}
+				new ViewResolver(req, res, pageMove);
 			
 			} // end of 페이지 이동처리에 대한 공통 코드 부분
 		}
