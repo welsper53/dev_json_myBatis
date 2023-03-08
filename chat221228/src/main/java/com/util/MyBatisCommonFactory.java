@@ -29,9 +29,8 @@ public class MyBatisCommonFactory {
 			if(sqlSessionFactory == null) {
 				sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader,"development");
 			}
-			
+			// 싱글톤패턴에서 객체 생성하기
 			logger.info("after sqlSessionFactory : "+sqlSessionFactory);
-			System.out.println("after sqlSessionFactory : "+sqlSessionFactory);
 		} catch (Exception e) {
 			logger.info("[[ Exception ]] "+e.toString());
 			System.out.println("[[ Exception ]] "+e.toString());

@@ -74,10 +74,4 @@ public class JDBCTemplate {
 			e.printStackTrace();
 		}
 	}
-	
-	public static void main(String[] args) {
-		JDBCTemplate jdbc = new JDBCTemplate();
-		
-		jdbc.
-	}
 }

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>/WEB-INF/classes/log4j.properties</param-value>
+	</context-param>  
+
+	<servlet>
+		<servlet-name>TestServlet</servlet-name>
+		<servlet-class>com.kh.test.controller.TestController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>TestServlet</servlet-name>
+		<url-pattern>/test/test.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>boardUpdate</servlet-name>
+		<servlet-class>mvc.kh.BoardUpdateServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>boardUpdate</servlet-name>
+		<url-pattern>/board/update.bo</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>boardInsert</servlet-name>
+		<servlet-class>mvc.kh.BoardWriteServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>boardInsert</servlet-name>
+		<url-pattern>/board/binsert</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>boardList</servlet-name>
+		<servlet-class>mvc.kh.BoardSelectServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>boardList</servlet-name>
+		<url-pattern>/board/boardList.bo</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>noticeList</servlet-name>
+		<servlet-class>mvc.kh.NoticeListServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>noticeList</servlet-name>
+		<url-pattern>/notice/noticeList.bo</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>boardDetail</servlet-name>
+		<servlet-class>mvc.kh.BoardDetailServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>boardDetail</servlet-name>
+		<url-pattern>/board/boardDetail.bo</url-pattern>
+	</servlet-mapping>
+</web-app>
