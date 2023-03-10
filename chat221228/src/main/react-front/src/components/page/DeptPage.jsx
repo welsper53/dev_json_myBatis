@@ -1,9 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { Table } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom'
 import Bottom from '../include/Bottom'
 import Header from '../include/Header'
 
-const DeptPage = () => {
+const DeptPage = ({authLogic}) => {
+  // Single Page Application컨벤션을 위한 훅
+   const navigate = useNavigate()
+   const onLogout = () => {
+      console.log("Board onLogout called")
+      authLogic.logout()
+   }
+
    const [depts, setDepts] = useState([
       {deptno:10, dname:"개발1팀",loc:"인천"},
       {deptno:20, dname:"개발2팀",loc:"경기"},
@@ -11,12 +19,18 @@ const DeptPage = () => {
    ]);
    useEffect(() => {
       setDepts(depts)
-         console.log(depts)
-         /* 옵션에 별도의 값을 지정하지 않으면 최초 한번만 실행된다 */
-         },[]);
+      console.log(depts)
+      /* 옵션에 별도의 값을 지정하지 않으면 최초 한번만 실행된다 */
+
+      authLogic.onAuthChange(user => {
+         if(!user) {
+            navigate("/")
+         }
+      })
+   },[]);
    return (
       <>
-         <Header/>
+         <Header onLogout={onLogout}/>
          <div>부서관리 페이지</div>
          <div className="dept-list">
          <Table striped bordered hover>

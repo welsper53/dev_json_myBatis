@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Table } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom'
 import Bottom from '../include/Bottom'
 import Header from '../include/Header'
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
@@ -26,10 +27,17 @@ import {
    
    const database= getDatabase();
 
-   const FireDeptPage = () => {
+   const FireDeptPage = ({authLogic}) => {
       const [depts, setDepts] = useState([]);
 
+      // Single Page Application컨벤션을 위한 훅
+      const navigate = useNavigate()
+      const onLogout = () => {
+         console.log("Board onLogout called")
+         authLogic.logout()
+      }
       useEffect(() => {
+         authLogic.onAuthChange()
          setDepts(depts)
          console.log(depts)
          console.log(database)
@@ -41,30 +49,36 @@ import {
             console.log(data)
             setDepts(data)
          });
-      /* 옵션에 별도의 값을 지정하지 않으면 최초 한번만 실행된다 */
+          /* 옵션에 별도의 값을 지정하지 않으면 최초 한번만 실행된다 */
+         
+         authLogic.onAuthChange(user => {
+            if(!user) {
+               navigate("/")
+            }
+         })
       },[]);
       
       //useEffect에서 초기화 된 상태값 출력해보기
-         console.log(depts)
-         return (
-               <>
-               <Header/>
-         <div>부서관리 페이지</div>
-         <div className="dept-list">
-         <Table striped bordered hover>
-         <thead>
-         <tr>
-            <th>부서번호</th>
-            <th>부서명</th>
-            <th>지역</th>
-         </tr>
-         </thead>
-         <tbody>
+      console.log(depts)
+      return (
+         <>
+         <Header onLogout={onLogout}/>
+      <div>부서관리 페이지</div>
+      <div className="dept-list">
+      <Table striped bordered hover>
+      <thead>
+      <tr>
+         <th>부서번호</th>
+         <th>부서명</th>
+         <th>지역</th>
+      </tr>
+      </thead>
+      <tbody>
          {Object.keys(depts).map(key => (
-               <DeptRow key={key} dept={depts[key]}/>
-               /* key값 없으면 에러 뜬다 */
-         ))
-      }
+            <DeptRow key={key} dept={depts[key]}/>
+            /* key값 없으면 에러 뜬다 */
+            ))
+         }
          </tbody>
       </Table>
          </div>

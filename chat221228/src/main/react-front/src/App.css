@@ -1,38 +1,54 @@
-.App {
+* {
+  box-sizing: border-box;
+}
+
+button {
+  outline: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.habit {
+  font-size: 2.5rem;  /* root태그 기준값 */
+  padding: 0.5em;     /* 내부여백 */
+  list-style: none;   /* li글머리 모양 삭제 */
+}
+
+.habit-count {
+  display: inline-block;
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  line-height: 2.25rem;
+  border-radius: 50%;
+  margin-left: 0.2rem;
+  margin-right: 0.5rem;
+  background-color: darkseagreen;
+  width: 2.5rem;
+  height: 2.5rem;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.habit-button {
+  font-size: 2.5rem;
+  margin: 0 0.1em;
+  background-color: transparent;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.habit-increase, .habit-decrease {
+  color: goldenrod;
+}
+.habit-delete {
+  font-size: 2rem;
+  color: darkred;
+}
+
+.add-input {
+  font-size: 2rem;
+  margin-right: 0.2rem;
+}
+.add-button {
+  height: 100%;
+  font-size: 1.5rem;
+  background-color: gray;
+  color: white;
+  padding: 0.3em 0.5em;
 }

@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import Bottom from '../include/Bottom'
 import Header from '../include/Header'
 
@@ -8,13 +9,24 @@ const HomePage = ({authLogic}) => {
    let { userId } = useParams();
    console.log(userId);
 
+     // Single Page Application컨벤션을 위한 훅
+   const navigate = useNavigate()
    const onLogout = () => {
-      authLogic.logout();
+      console.log("Board onLogout called")
+      authLogic.logout()
    }
+
+   useEffect(() => {
+      authLogic.onAuthChange(user => {
+         if(!user) {
+         navigate("/")
+         }
+      })
+   })
 
    return (
       <React.Fragment>
-         <Header userId={userId} onLogout={onLogout}/>
+         <Header onLogout={onLogout}/>
       <div>
          HomePage 페이지
       </div>
