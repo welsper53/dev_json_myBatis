@@ -1,3 +1,5 @@
 ## Ignore File ##
 
 .metadata/
+chat221228/src/main/webapp/pds/*.
+chat221228/src/main/react-front/node_modules/

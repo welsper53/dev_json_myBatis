@@ -92,6 +92,7 @@ public class Board3Dao {
 		
 		return result;
 	}
+	
 	public int getBNo() {
 		int result  = 0;
 		logger.info("getBNo호출");
@@ -110,6 +111,7 @@ public class Board3Dao {
 		
 		return result; 
 	}
+	
 	public void bStepUpdate(Map<String, Object> pMap) {
 		int result =0;
 		SqlSessionFactory sqlSessionFactory = null;
@@ -149,7 +151,28 @@ public class Board3Dao {
 		 return result;
 	}
 	
-	/* 글 수정하기 구현
+	/* 글 조회수 수정하기 구현
+	 * @param int - 글 번호 가져오기*/
+	public int hitCount(int bm_no) {
+		int result =0;
+		SqlSessionFactory sqlSessionFactory = null;
+		SqlSession sqlSession = null;
+		
+		try { 
+			sqlSessionFactory = mcf.getSqlSessionFactory();
+			sqlSession = sqlSessionFactory.openSession();
+			result = sqlSession.update("hitCount", bm_no);
+			if(result == 1) {
+				sqlSession.commit();
+			}
+			logger.info(result);//
+		} catch (Exception e) {
+			e.printStackTrace();
+		}			
+		return result;
+	}
+	
+	/* 글 삭제하기 구현
 	 * @param pMap - 사용자가 입력한 값 받아옴*/
 	public int boardMDelete(Map<String, Object> pMap) {
 		int result =0;
@@ -175,6 +198,38 @@ public class Board3Dao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}			
+		return result;
+	}
+
+	public int boardSInsert(Map<String, Object> pMap) {
+		logger.info("boardSInsert 호출");
+		int result = 0;
+		
+		// 물리적으로 떨어져 있는 서버와 연결통로 확보 
+		//-> MyBatisConfig.xml 문서 정보(드라이버, 오라클URL, 계정 정보, 쿼리문 담은 xml) 참조 
+		SqlSessionFactory sqlSessionFactory = null;
+		// SqlSession으로 commit과 rollback 지원받음
+		SqlSession sqlSession = null;
+		
+		try {
+			sqlSessionFactory = mcf.getSqlSessionFactory();
+			sqlSession = sqlSessionFactory.openSession();
+			
+			// insert이지만 update하는 이유는 리턴타입이 Object이기 때문이다
+			// 메소드이름은 상관없이 해당 쿼리문을 id로 찾기 때문이다
+			result = sqlSession.update("boardSInsert", pMap); // id값
+			
+			if (result == 1) {
+				sqlSession.commit();
+			}
+			logger.info(result);		// 3건 조회
+			
+			// INSERT, UPDATE, DELETE 시 커밋 호출할 때 사용함
+			// sqlSession.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+				
 		return result;
 	}
 }
