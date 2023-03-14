@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.*" %>    
+<%@ page import="java.util.*, com.util.PageBar" %>    
 <%
 // jsp에서 자바코드(스크립틀릿)와 html코드의 작성 위치는 문제가 되지 않는다.
 // 왜냐하면 어차피 jsp는 서버에서 실행되고 그 결과가 text로 출력되는 것이므로 
@@ -12,6 +12,15 @@
 		size = boardList.size();
 	}		
 	out.print(size);
+	
+	// 한 페이지에 출력될 로우의 수
+	int numPerPage = 3;
+	// 현재 내가 바라보는 페이지
+	int nowPage = 0;
+	
+	if (request.getParameter("nowPage") != null) {
+		nowPage = Integer.parseInt(request.getParameter("nowPage"));
+	}
 %>    
 <!DOCTYPE html>
 <html>
@@ -160,7 +169,7 @@
 <%
 	}
 	else if(size>0){
-		for(int i=0;i<size;i++){
+		for(int i=nowPage*numPerPage; i<(nowPage*numPerPage)+numPerPage; i++){
 			if(size == i) break;
 			Map<String,Object> rMap = boardList.get(i);
 %>	      
@@ -169,7 +178,7 @@
         		<td>        		
 <!-- 너 댓글이니? -->
 <%
-	String imgPath = path + "..\\images\\";
+	String imgPath = path + "..\\..\\..\\images\\";
 	if(Integer.parseInt(rMap.get("BM_POS").toString())>0){
 		for(int j=0;j<Integer.parseInt(rMap.get("BM_POS").toString());j++){
 			out.print("&nbsp;&nbsp;&nbsp;");
@@ -228,7 +237,15 @@
    
 <!-- 페이지 네이션 추가 시작 -->
 	<div style="display:table-cell;vertical-align:middle; width:800px; background:#efefef; height:30; border:1px solid #ccc;">
-		1 2 3 4 5 6 7 8 9 10
+	<%
+		// 페이지 네비게이션이 필요한 페이지가 다를 것이다
+		String pagePath = "boardList.st3";
+		// 인스턴스화 할 때 생성자 파라미터로 페이징 처리에 필요한 변수 초기화
+		PageBar pb = new PageBar(numPerPage, size, nowPage, pagePath);
+		// 페이징 처리에 필요한 a태그들에 대한 문자열을 만들어서 getPageBar()메소드를 호출하면
+		// 페이징 처리에 필요한 문자열을 StringBuilder에 처리하였고 그 문자열을 toString() 읽어와서 출력한다
+		out.print(pb.getPageBar());
+	%>
 	</div>
 <!-- 페이지 네이션 추가   끝  -->
 <%

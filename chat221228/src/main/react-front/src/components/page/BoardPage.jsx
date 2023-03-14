@@ -33,11 +33,11 @@ const BoardPage = ({authLogic}) => {
       const res = await boardListDB(board)
       console.log(res.data)
       const list =[]
-      res.data.forEach((onerow)=>{
+      res.data.forEach((item) => {
         const obj = {
-          BM_NO:onerow.BM_NO,
-          BM_TITLE:onerow.BM_TITLE,
-          BM_WRITER:onerow.BM_WRITER,
+          BM_NO: item.BM_NO,
+          BM_TITLE: item.BM_TITLE,
+          BM_WRITER: item.BM_WRITER,
         }
         //배열에 넣는 함수 push
         list.push(obj)

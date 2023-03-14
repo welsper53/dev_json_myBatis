@@ -32,7 +32,28 @@ public class HandlerMapping {
 		Object obj = null;
 		ModelAndView mav = null;
 		
-		if ("board3".equals(upmu[0])) {
+		
+		////////// 우편번호 게시판 설계 공부
+		if ("common".equals(upmu[0])) {
+			controller = new CommonController();
+			// 게시글 전체 목록
+			if ("zipcodeList".equals(upmu[1])) {	// html화면 출력이 나감 - text/html
+				obj = controller.zipcodeList(req, res);
+				
+				// 리턴타입이 ModelAndView
+				if (obj instanceof ModelAndView) {
+					return (ModelAndView)obj;
+				}
+				// 리턴타입이 String
+				else if (obj instanceof String) {
+					return (String)obj;
+				}
+			}// end of zipcodeList
+		}
+		
+		
+		////////// 게시판 설계 공부
+		else if ("board3".equals(upmu[0])) {
 			controller = new Board3Controller();
 			
 			// 게시글 전체 목록
@@ -84,6 +105,15 @@ public class HandlerMapping {
 			else if ("imageUpload".equals(upmu[1])) {	// 리액트 quill editer 이미지 추가
 				obj = controller.imageUpload(req, res);
 				logger.info("imageUpload 호출==> boolean: " + obj instanceof String);
+				
+				// 리턴타입이 String
+				if (obj instanceof String) {
+					return (String)obj;
+				}
+			}
+			else if ("imageDownload".equals(upmu[1])) {	// 리액트 quill editer 이미지 추가
+				obj = controller.imageDownload(req, res);
+				logger.info("imageDownload 호출==> boolean: " + obj instanceof String);
 				
 				// 리턴타입이 String
 				if (obj instanceof String) {

@@ -54,7 +54,6 @@ public class HashMapBinder {
 		
 		while(en.hasMoreElements()) {
 			String key = en.nextElement();
-			logger.info(req.getParameter(key));
 			pMap.put(key, multi.getParameter(key));
 		}
 		logger.info(pMap);
@@ -84,6 +83,7 @@ public class HashMapBinder {
 			// 첨부파일에 크기를 담을 수 있는 변수 선언
 			double size = 0;
 			
+			logger.info(file);
 			if (file != null) {
 				size = file.length();	// 파일 크기를 byte 단위로 담음
 				size = size/1024.0;		// kbyte로 변환

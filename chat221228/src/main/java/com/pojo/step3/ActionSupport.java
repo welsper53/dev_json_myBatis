@@ -63,6 +63,7 @@ public class ActionSupport extends HttpServlet {
 		if (obj != null) {	// redirect: XXX.jsp 또는 forward: XXX.jsp
 			String[] pageMove = null;
 			ModelAndView mav = null;
+			logger.info(obj.toString());
 			
 			if (obj instanceof String) {
 				logger.info("obj가 String일 때");
@@ -103,6 +104,7 @@ public class ActionSupport extends HttpServlet {
 				new ViewResolver(req, res, pageMove);
 			} // end of 페이지 이동처리에 대한 공통 코드 부분
 			else if (pageMove != null && pageMove.length == 1) {
+				// 마임타입 설정
 				res.setContentType("text/plain;charset=UTF-8");
 				PrintWriter out = res.getWriter();
 				out.print(pageMove[0]);

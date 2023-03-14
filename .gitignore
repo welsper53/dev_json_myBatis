@@ -1,5 +1,8 @@
 ## Ignore File ##
 
 .metadata/
-chat221228/src/main/webapp/pds/*.
+chat221228/src/main/webapp/pds/*.bmp
+chat221229/src/main/webapp/pds/*.png
+chat221230/src/main/webapp/pds/*.log
+chat221228/src/main/webapp/pds/\355
 chat221228/src/main/react-front/node_modules/

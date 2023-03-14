@@ -103,7 +103,8 @@ public class Board3Controller implements Controller3 {
 		hmb.multiBind(pMap);
 		logger.info("after ==> "+pMap);
 		
-		//result = boardLogic.boardInsert(pMap);
+		result = boardLogic.boardInsert(pMap);
+		logger.info(result);
 
 		String path = "";
 		if (result == 1) {
@@ -237,7 +238,7 @@ public class Board3Controller implements Controller3 {
 		logger.info("imageGet 호출 성공===>"+b_file);		// ~~.png
 		
 		// 톰캣 서버의 물리적인 위치
-		String filePath = "C:\\kh_git2022\\dev_java20220415\\dev_web\\src\\main\\webapp\\pds"; // 절대경로.	
+		String filePath = "D:\\\\workspace_java\\\\chat221228\\\\src\\\\main\\\\webapp\\\\pds"; // 절대경로.	
 		String fname = b_file;
 		logger.info("b_file: 8->euc"+b_file);	
 		
@@ -308,20 +309,23 @@ public class Board3Controller implements Controller3 {
 	
 	
 	// download.jsp페이지의 내용과 같다
-	public void imageDownload(HttpServletRequest req, HttpServletResponse res) {
+	@Override
+	public Object imageDownload(HttpServletRequest req, HttpServletResponse res) {
 		logger.info("imageDownload 호출 성공");
+		
 		String b_file = req.getParameter("imageName");
 		String filePath = "C:\\kh_git2022\\dev_java20220415\\dev_web\\src\\main\\webapp\\pds"; // 절대경로.	
-		
 		String fname = b_file;
 		logger.info("b_file: 8->euc"+b_file);		
 		
 		File file = new File(filePath,b_file.trim());
 	 	String mimeType = req.getServletContext().getMimeType(file.toString());
+	 	logger.info("mimeType : "+mimeType);
 	 	
 		if(mimeType == null){
 			res.setContentType("application/octet-stream");
 		}
+		
 		String downName = null;
 		FileInputStream fis = null;
 		ServletOutputStream sos = null;
@@ -336,24 +340,32 @@ public class Board3Controller implements Controller3 {
 		   	res.setHeader("Content-Disposition", "attachment;filename="+downName);
 		 	fis = new FileInputStream(file);
 			sos = res.getOutputStream();
+			
 			byte b[] = new byte[1024*10];
 			int data = 0;
 			
 			while((data=(fis.read(b,0,b.length)))!=-1){
 				sos.write(b,0,data);
 			}
+			
 			sos.flush();		
 		}catch(Exception e){
 			logger.info(e.toString());
 		}finally{
 			try {
-				if(sos != null) 
-					sos.close();
-				if(fis != null) 
-					fis.close();				
+				if(sos != null) sos.close();
+				if(fis != null) fis.close();				
 			} catch (Exception e2) {
 				// TODO: handle exception
 			}
 		}
+		
+		return null;
 	}// end of imageDownload
+
+	@Override
+	public Object zipcodeList(HttpServletRequest req, HttpServletResponse res) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

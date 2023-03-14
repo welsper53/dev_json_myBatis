@@ -15,7 +15,7 @@ const BoardFileDetail = ({files}) => {
   const download = () => {
     axios({
       method: 'GET',
-      url: process.env.REACT_APP_PUBLIC_URL+`board3/imageDownload.pj?imageName=${files[0]}`,                 
+      url: process.env.REACT_APP_CHAT221228_IP+`board3/imageDownload.st3?imageName=${files[0]}`,                 
       responseType: 'blob' 
     }).then(response =>{        
       const url = window.URL.createObjectURL(new Blob([response.data], 
@@ -36,7 +36,7 @@ const BoardFileDetail = ({files}) => {
             <Dspan type='text' id='fileUpload'
               onClick={download}
             >
-              {files[0]}    {/* 파일명 */}
+              {files[0]}
             </Dspan>
           </div>
       }
