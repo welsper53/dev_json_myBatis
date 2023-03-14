@@ -1,12 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import { BrowserRouter } from 'react-router-dom';
-import AuthLogic from './service/authLogic';
-import firebaseApp from './service/firebase';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import { BrowserRouter } from "react-router-dom";
+import AuthLogic from "./service/authLogic";
+import firebaseApp from "./service/firebase";
+import "react-quill/dist/quill.snow.css";
 import "@fortawesome/fontawesome-free/js/all.js";
-//import SampleApp from './SampleApp';
+//import SampleApp from "./SampleApp";
 
 // 공통코드 -> service>authLogic.js -> import외부 js재사용 가능하다 
 // -> export default 클래스명 -> module

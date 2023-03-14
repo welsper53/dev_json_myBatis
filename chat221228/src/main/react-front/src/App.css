@@ -1,54 +1,51 @@
-* {
+*{
   box-sizing: border-box;
 }
-
-button {
+button{
   outline: none;
   border: 0;
   cursor: pointer;
 }
-
-.habit {
-  font-size: 2.5rem;  /* root태그 기준값 */
-  padding: 0.5em;     /* 내부여백 */
-  list-style: none;   /* li글머리 모양 삭제 */
+.habit{
+  font-size: 2.5rem;/* root태그 기준값 */
+  padding: 0.5em;/* 내부여백 */
+  list-style: none;/* li 구슬삭제 */
 }
-
-.habit-count {
+.habit-count{
   display: inline-block;
   text-align: center;
-  line-height: 2.25rem;
-  border-radius: 50%;
-  margin-left: 0.2rem;
+  line-height: 2.5rem;
+  border-radius: 35%;
+  margin-left: 0.5rem;
   margin-right: 0.5rem;
-  background-color: darkseagreen;
+  background-color: darkcyan;
   width: 2.5rem;
   height: 2.5rem;
   color: white;
 }
-
-.habit-button {
-  font-size: 2.5rem;
-  margin: 0 0.1em;
+.habit-button{
   background-color: transparent;
+  font-size: 2.5rem;
+  margin: 0,0.1em;
 }
+.habit-increase,
+.habit-decrease{
+  color: brown;
 
-.habit-increase, .habit-decrease {
-  color: goldenrod;
 }
-.habit-delete {
+.habit-delete{
+  color:chocolate;
   font-size: 2rem;
-  color: darkred;
 }
-
-.add-input {
+.add-input{
   font-size: 2rem;
   margin-right: 0.2rem;
 }
-.add-button {
+
+.add-button{
   height: 100%;
   font-size: 1.5rem;
   background-color: gray;
-  color: white;
-  padding: 0.3em 0.5em;
+  color: wheat;
+  padding: 0.2em 0.5em;
 }

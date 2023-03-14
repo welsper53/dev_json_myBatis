@@ -17,8 +17,17 @@ public class ViewResolver {
 			throws ServletException, IOException {
 		logger.info("ViewResolver 호출");
 		logger.info("pageMove : " + pageMove);
-		String path = pageMove[1];
+		//String path = pageMove[1];
+		
+		String path = "";
+		if (pageMove[1]==null) {
+			path = pageMove[0];
+		}
+		else {
+			path = pageMove[1];
+		}
 		logger.info(path);
+		logger.info("pageMove : " + pageMove[0] + " + " + pageMove[1]);
 		
 		// webapp 바라본다
 		if ("redirect".equals(pageMove[0])) {

@@ -1,6 +1,7 @@
 package com.pojo.step3;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -64,28 +65,48 @@ public class ActionSupport extends HttpServlet {
 			ModelAndView mav = null;
 			
 			if (obj instanceof String) {
+				logger.info("obj가 String일 때");
+				
 				if (((String) obj).contains(":")) {
 					logger.info(":포함되어 있어요.");
 					pageMove = obj.toString().split(":");
-				} else {
-					logger.info(":포함되어 있지 않아요.");
+				} else if (((String) obj).contains("/")){
+					logger.info("/포함되어 있어요.");
 					pageMove = obj.toString().split("/");
+				} else {
+					// Spring Boot 	: @RestController 사용
+					// Spring4버전  	: ResponseBody 사용
+					// text/plain -> text형식 -> String
+					logger.info(":콜론도 /도 포함되어 있지 않아요.");
+					
+					pageMove = new String[1];
+					pageMove[0] = obj.toString();
+					
+					logger.info(obj.toString());
 				}
-				logger.info(pageMove[0] + ", " + pageMove[1]);
+				
+				logger.info(pageMove[0]);
 			} else if (obj instanceof ModelAndView) {
-				logger.info("");
+				logger.info("obj가 ModelAndView일때");
 				mav = (ModelAndView)obj;
 				pageMove = new String[2];
 				pageMove[0] = "";	// forward -> ViewResolver else if()타게됨 -> webapp
 				pageMove[1] = mav.getViewName();
 			}
 			
-			if (pageMove != null) {
+			logger.info("Object가 String일 때와 ModelAndview일 때가 끝나는 지점...");
+			logger.info("pageMove ===> " + pageMove);
+			logger.info("pageMove.length ===> " + pageMove.length);
+			if (pageMove != null && pageMove.length == 2) {
 				// pageMove[0] = redirect or forward
 				// pageMove[1] = XXX.jsp
 				new ViewResolver(req, res, pageMove);
-			
 			} // end of 페이지 이동처리에 대한 공통 코드 부분
+			else if (pageMove != null && pageMove.length == 1) {
+				res.setContentType("text/plain;charset=UTF-8");
+				PrintWriter out = res.getWriter();
+				out.print(pageMove[0]);
+			}
 		}
 	} // end of doService
 

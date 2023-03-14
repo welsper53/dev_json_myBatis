@@ -61,12 +61,15 @@ public class HashMapBinder {
 		
 		// 첨부파일에 대한 정보 받아오기
 		Enumeration<String> files = multi.getFileNames();	// n개 만큼
+		logger.info(files);
 		
 		if (files != null) {
+			logger.info("files가 널이 아니면");
 			// 업로드 대상 파일을 객체로 만듦
 			File file = null;	// 내용까지 복제되는건 아니다 - 파일명에 대해서만 객체화
 			
 			while(files.hasMoreElements()) {
+				logger.info("첨부파일이 존재 할 때 호출");
 				String fname = files.nextElement();
 				String filename = multi.getFilesystemName(fname);
 				
