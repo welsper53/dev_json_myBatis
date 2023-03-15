@@ -35,7 +35,9 @@ public class CommonController implements Controller3{
 		logger.info(zList);
 		
 		ModelAndView mav = new ModelAndView(req);
-		mav.setViewName("common/zipcodeList");
+		
+		// WEB-INF/views/common/jsonZipcodeList.jsp
+		mav.setViewName("common/jsonZipcodeList");
 		mav.addObject("zList", zList);
 		
 		return mav;

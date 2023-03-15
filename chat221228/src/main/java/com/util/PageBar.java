@@ -72,7 +72,7 @@ public class PageBar {
 			for(int i=0;i<pagePerBlock;i++) {
 				//현재 내가 보고 있는 페이지 블록 일때와
 				if(nowBlock*pagePerBlock+i==nowPage) {
-					pageLink.append("<b>"+(nowBlock*pagePerBlock+i+1)+"</b>&nbsp;");
+					pageLink.append("<b>"+(nowBlock*pagePerBlock+i+1)+"</b>&nbsp;"); // 현재 페이지 num을 b태그
 				}
 				//그렇지 않을 때를 나누어 처리해야 함.
 				else {
