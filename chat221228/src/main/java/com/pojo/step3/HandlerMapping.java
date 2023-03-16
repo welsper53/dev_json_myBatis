@@ -150,10 +150,28 @@ public class HandlerMapping {
 		else if ("auth".equals(upmu[0])) {
 			
 		}
+		
+		
 		// 회원관리 - 이순신이
 		else if ("member".equals(upmu[0])) {
-			
-		}
+			logger.info("member");
+			controller = new MemberController();
+			// 게시글 전체 목록
+			if ("login".equals(upmu[1])) {	// html화면 출력이 나감 - text/html
+				obj = controller.login(req, res);
+				
+				// 리턴타입이 ModelAndView
+				if (obj instanceof ModelAndView) {
+					return (ModelAndView)obj;
+				}
+				// 리턴타입이 String
+				else if (obj instanceof String) {
+					return (String)obj;
+				}
+			}
+		} // end of 회원관리
+		
+		
 		// 주문관리 - 강감찬이
 		else if ("order".equals(upmu[0])) {
 			

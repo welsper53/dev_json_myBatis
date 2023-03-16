@@ -53,6 +53,7 @@ public class ActionSupport extends HttpServlet {
 		Object obj = "";
 		
 		try {
+			// 여기를 진행하는 것은 내려가는 길(서버 안으로)
 			obj = HandlerMapping.getController(upmu, req, res);
 			logger.info("obj : " + obj);
 			
@@ -60,11 +61,16 @@ public class ActionSupport extends HttpServlet {
 			logger.info("Exception : " + e.toString());
 		}
 		
+		// 여기는 응답으로 나가는 길이다(클라이언트로)
+		// ModelAndView 또는 String
 		if (obj != null) {	// redirect: XXX.jsp 또는 forward: XXX.jsp
+			// pageMove기억
+			// - 응답페이지의 위치
 			String[] pageMove = null;
 			ModelAndView mav = null;
 			logger.info(obj.toString());
 			
+			// String이면 webapp에 배치한다
 			if (obj instanceof String) {
 				logger.info("obj가 String일 때");
 				
@@ -87,12 +93,17 @@ public class ActionSupport extends HttpServlet {
 				}
 				
 				logger.info(pageMove[0]);
-			} else if (obj instanceof ModelAndView) {
+			} 
+			
+			// ModelAndView인 경우 WEB-INF 아래 배치한다
+			else if (obj instanceof ModelAndView) {
 				logger.info("obj가 ModelAndView일때");
 				mav = (ModelAndView)obj;
 				pageMove = new String[2];
 				pageMove[0] = "";	// forward -> ViewResolver else if()타게됨 -> webapp
 				pageMove[1] = mav.getViewName();
+				
+				logger.info(pageMove[0] + ", " + pageMove[1]);
 			}
 			
 			logger.info("Object가 String일 때와 ModelAndview일 때가 끝나는 지점...");
@@ -103,6 +114,11 @@ public class ActionSupport extends HttpServlet {
 				// pageMove[1] = XXX.jsp
 				new ViewResolver(req, res, pageMove);
 			} // end of 페이지 이동처리에 대한 공통 코드 부분
+			
+			// pageMove배열이 한 개인 경우
+			// - 리턴값이 String인 경우
+			//   => @RestController, @ResponseBody
+			// 예) 글작성 이미지 추가 후 출력
 			else if (pageMove != null && pageMove.length == 1) {
 				// 마임타입 설정
 				res.setContentType("text/plain;charset=UTF-8");
