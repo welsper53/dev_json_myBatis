@@ -169,6 +169,18 @@ public class HandlerMapping {
 					return (String)obj;
 				}
 			}
+			else if ("logout".equals(upmu[1])) {	// html화면 출력이 나감 - text/html
+				obj = controller.logout(req, res);
+				
+				// 리턴타입이 ModelAndView
+				if (obj instanceof ModelAndView) {
+					return (ModelAndView)obj;
+				}
+				// 리턴타입이 String
+				else if (obj instanceof String) {
+					return (String)obj;
+				}
+			}
 		} // end of 회원관리
 		
 		

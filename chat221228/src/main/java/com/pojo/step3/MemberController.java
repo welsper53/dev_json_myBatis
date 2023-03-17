@@ -50,6 +50,29 @@ public class MemberController implements Controller3 {
 	}
 
 	@Override
+	public Object logout(HttpServletRequest req, HttpServletResponse res) {
+		logger.info("logout 호출");
+		// 쿠키는 삭제하는 메소드가 따로 없다
+		// 생성자에 두번째 파라미터에 빈문자열로 처리해야한다
+
+	 	Cookie cmem_id = new Cookie("cmem_id","");
+		cmem_id.setPath("/");
+		cmem_id.setMaxAge(0);
+		res.addCookie(cmem_id);
+		Cookie cmem_name = new Cookie("cmem_name","");
+		cmem_name.setPath("/");
+		cmem_name.setMaxAge(0);
+		res.addCookie(cmem_name);
+		
+	 	// 리액트 사용 시 반환방법
+	 	// navigate = useNavigate("./cindex.jsp")
+	 	// 부분적으로 변함
+		return "redirect:./cindex.jsp";
+	}
+	
+	
+	
+	@Override
 	public Object zipcodeList(HttpServletRequest req, HttpServletResponse res) {
 		// TODO Auto-generated method stub
 		return null;
@@ -108,5 +131,6 @@ public class MemberController implements Controller3 {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 }

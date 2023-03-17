@@ -31,7 +31,6 @@
 	
 	//값이 null이면 로그인 안함
  	out.print("쿠키에서 꺼내온 값 ===> "+cmem_id+", "+cmem_name);
- 	
  	if(cmem_id==null && cmem_name==null){
 %>
 	<script>
@@ -70,6 +69,10 @@
 			
 			location.href = "./login.st3?mem_id=" + user_id + "&mem_pw=" + user_pw;
 		}
+		const logout = () => {
+			// 여기서 ./가 없으면 pageMove배열에 매칭이 안되므로 주의해야한다
+			location.href = "./logout.st3";
+		}
 	</script>
 </head>
 <body>
@@ -78,44 +81,75 @@
     <div class="easyui-layout" style="width:1000px;height:550px;">
 <!-- 메뉴 구성 [로그인화면 과 트리메뉴] -->
     <div id="p" data-options="region:'west'" title="KH정보교육원" style="width:200px;padding:10px">
-<!--============== [[ 로그인 화면 ]] ==============-->
+<%
+	// 
+	if (cmem_id == null) {
+%>
+	<!--============== [[ 로그인 화면 ]] ==============-->
 		<div id="d_login" align="center">
-		<div style="margin: 3px 0;"></div>
-	<!-- create table member mem_id varchar2(10) -->
-		<input id="tb_id" type="text" style="width:170px">
-		<script>
-			$('#tb_id').textbox({
-			iconCls:'icon-man',
-			iconAlign:'right',
-			prompt: '아이디'
-			})
-		</script>
-		<div style="margin: 3px 0;"></div>
-		<input id="pb_pw" type="text" style="width:170px">
-		<script>
-			$('#pb_pw').textbox({
-				iconCls: 'icon-lock',
-				prompt: 'right',
-				showEye: true
-			});
-		</script>
-		<div style="margin: 3px 0;"></div>
-		<a id="btn_login" href="javascript:login()">로그인</a>
-		<script>
-			$('#btn_login').linkbutton({
-			iconCls: 'icon-man'
-			});
-		</script>
-		<a id="btn_member" href="javascript:memberShip()">회원가입</a>
-		<script>
-			$('#btn_member').linkbutton({
-			iconCls: 'icon-add'
-			});
-		</script>
+			<div style="margin: 3px 0;"></div>
+		<!-- create table member mem_id varchar2(10) -->
+			<input id="tb_id" type="text" style="width:170px">
+			<script>
+				$('#tb_id').textbox({
+				iconCls:'icon-man',
+				iconAlign:'right',
+				prompt: '아이디'
+				})
+			</script>
+			<div style="margin: 3px 0;"></div>
+			<input id="pb_pw" type="text" style="width:170px">
+			<script>
+				$('#pb_pw').textbox({
+					iconCls: 'icon-lock',
+					prompt: 'right',
+					showEye: true
+				});
+			</script>
+			<div style="margin: 3px 0;"></div>
+			<a id="btn_login" href="javascript:login()">로그인</a>
+			<script>
+				$('#btn_login').linkbutton({
+				iconCls: 'icon-man'
+				});
+			</script>
+			<a id="btn_member" href="javascript:memberShip()">회원가입</a>
+			<script>
+				$('#btn_member').linkbutton({
+				iconCls: 'icon-add'
+				});
+			</script>
+		</div>
+	<!--============== [[ 로그인 화면 ]] ==============-->
+<%
+	}
+	else {
+%>
+	<!--============= [[ 로그아웃 화면 ]] ==============-->
+		<div id="d_logout" align="center">  
+		<!-- 로그인 완료 후 출력할 화면 -->
+			<span><%=cmem_name %>님 환영합니다.</span>
+			<br />
+			<div style="margin: 3px 0;"></div>
+			<a id="btn_logout" href="javascript:logout()">로그아웃</a>
+			<script>
+				$('#btn_logout').linkbutton({
+				iconCls: 'icon-remove'
+				});
+			</script>
+			<a id="btn_member" href="javascript:memberShip()">정보수정</a>
+			<script>
+				$('#btn_member').linkbutton({
+				iconCls: 'icon-edit'
+				});
+			</script>
+			<div style="margin: 3px 0;"></div>
 		</div>
 	<!--============= [[ 로그아웃 화면 ]] ==============-->
-		<div id="d_logout" align="center"></div>  
-		<!-- 메뉴 구성 [로그인화면 과 트리메뉴] -->
+<%
+	}
+%>
+	<!-- 메뉴 구성 [로그인화면 과 트리메뉴] -->
 		<div style="margin: 3px 0;"></div> 
 		<ul id="tre_gym" class="easyui-tree">
 			<li data-options="state:'closed'">
@@ -181,5 +215,4 @@
 	9. 8번에서 반환 받은 Map에서 오라클서버에서 조회된 아이디와 이름을 세션에 담기
 	10. 페이지 이동 sendRedirect나 forward 둘다 모두 가능하다
 		단 forward로 응답을 처리한 경우 인증 후 다른 서비스를 forward로 처리하는 것이 불가능하다 <- 주의!
-	11. 
 -->

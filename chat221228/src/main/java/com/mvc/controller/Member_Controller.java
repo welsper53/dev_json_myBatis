@@ -17,8 +17,8 @@ import com.mvc.dao.MemberDao;
 
 
 @WebServlet("/intro/login")
-public class MemberController extends HttpServlet {
-	Logger logger = Logger.getLogger(MemberController.class);
+public class Member_Controller extends HttpServlet {
+	Logger logger = Logger.getLogger(Member_Controller.class);
 	/**
 	 * 
 	 */
