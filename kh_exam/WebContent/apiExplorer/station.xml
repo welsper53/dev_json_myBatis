@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ServiceResult>
+	<comMsgHeader />
+	<msgHeader>
+		<headerCd>0</headerCd>
+		<headerMsg>정상적으로 처리되었습니다.</headerMsg>
+		<itemCount>0</itemCount>
+	</msgHeader>
+	<msgBody>
+		<itemList>
+			<gpsX>126.9773193291</gpsX>
+			<gpsY>37.5724064843</gpsY>
+			<poiId>100000023</poiId>
+			<poiNm>KT광화문지사</poiNm>
+			<posX>197996.64705867067</posX>
+			<posY>452545.68113501323</posY>
+		</itemList>
+		<itemList>
+			<gpsX>126.9763838838</gpsX>
+			<gpsY>37.569845398</gpsY>
+			<poiId>100000025</poiId>
+			<poiNm>광화문</poiNm>
+			<posX>197913.9490081057</posX>
+			<posY>452261.48109927494</posY>
+		</itemList>
+		<!-- 생략 -->
+	</msgBody>
+<ServiceResult>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rfcOpenApi>
+	<header>
+		<resultCode>00</resultCode>
+		<resultMsg>success</resultMsg>
+	</header>
+	<body>
+		<pageIndex>0</pageIndex>
+		<pageSize>10</pageSize>
+		<startPage>1</startPage>
+		<totalCount>181</totalCount>
+		<data>
+			<list>
+				<brandnm>오룡마을</brandnm>
+				<brandno>63</brandno>
+				<goodsnm>여수 천년한옥</goodsnm>
+				<goodsno>771</goodsno>
+				<price>70000</price>
+				<selltype>lodging</selltype>
+				<posx>34.7590947</posx>
+				<posy>127.6101041</posy>
+			</list>
+			<list>생략</list>
+			<list>생략</list>
+		</data>
+	</body>
+</rfcOpenApi>

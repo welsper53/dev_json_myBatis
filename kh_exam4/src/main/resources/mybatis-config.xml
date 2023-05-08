@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+	<settings>
+		<!-- Null 체크해준다 -->
+		<setting name="jdbcTypeForNull" value="NULL" />
+	</settings>
+	<typeAliases>
+		<typeAlias alias="mVO" type="com.ncs.test.member.model.vo.Member"/>
+	</typeAliases>
+	
+	<mappers>
+	
+		<mapper resource="com/mybatis/mapper/test.xml" />
+	</mappers>
+</configuration>
+
+<!-- 
+<mapper resource="resources/mappers/member-mapper.xml" />
+
+-->
